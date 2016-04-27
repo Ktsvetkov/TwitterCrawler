@@ -39,7 +39,7 @@ def getTweetCount(name):
     seenTweetIds = set()
     #######
 
-    #print "Tweets: " + str(tweets)
+    print "\n\n\nTweets: " + str(tweets) + "\n\n\n"
 
     for tweet in tweets:
 
