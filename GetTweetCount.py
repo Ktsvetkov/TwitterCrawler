@@ -44,7 +44,7 @@ def getTweetCount(name):
     for tweet in tweets:
 
         ###### Adds tweet id if not already seen else continues to next tweet
-        if (tweet['tweet_id'] not in seenTweetIds) and isToday(tweet['created_at']):
+        if (tweet['tweet_id'] not in seenTweetIds):# and isToday(tweet['created_at']):
             print "Tweet Checked with ID " + str(tweet['tweet_id'])
             seenTweetIds.add(tweet['tweet_id'])
         else:
@@ -64,7 +64,7 @@ def getTweetCount(name):
                 tweets2 = twit.getTweets()
                 ######
                 for tweet2 in tweets2:
-                    if (tweet2['tweet_id'] not in seenTweetIds) and isToday(tweet2['created_at']):
+                    if (tweet2['tweet_id'] not in seenTweetIds):# and isToday(tweet2['created_at']):
                         ##### Adds tweet if not added
                         seenTweetIds.add(tweet2['tweet_id'])
                         #####
