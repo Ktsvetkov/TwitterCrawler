@@ -4,13 +4,16 @@ import tweepy, sys
 from tweepy import OAuthHandler
 from TwitterScraper import TwitterSearchImpl
 
+returnsOnlyCurrentTweets = True;
+
 def isToday(inString):
+    if not returnsOnlyCurrentTweets:
+        return True
     timePeriodString = filter(lambda x: x.isalpha(), inString)
     if ('ago' in timePeriodString) or 'min' == timePeriodString or ('s'  == timePeriodString) or ('hr' == timePeriodString):
         return True
     else:
         return False
-
 
 
 consumer_key = 'sG80wN7mOwn8UD9d1sTNVQK21'
@@ -44,7 +47,7 @@ def getTweetCount(name):
     for tweet in tweets:
 
         ###### Adds tweet id if not already seen else continues to next tweet
-        if (tweet['tweet_id'] not in seenTweetIds):# and isToday(tweet['created_at']):
+        if (tweet['tweet_id'] not in seenTweetIds) and isToday(tweet['created_at']):
             print "Tweet Checked with ID " + str(tweet['tweet_id'])
             seenTweetIds.add(tweet['tweet_id'])
         else:
@@ -64,7 +67,7 @@ def getTweetCount(name):
                 tweets2 = twit.getTweets()
                 ######
                 for tweet2 in tweets2:
-                    if (tweet2['tweet_id'] not in seenTweetIds):# and isToday(tweet2['created_at']):
+                    if (tweet2['tweet_id'] not in seenTweetIds) and isToday(tweet2['created_at']):
                         ##### Adds tweet if not added
                         seenTweetIds.add(tweet2['tweet_id'])
                         #####
@@ -131,8 +134,8 @@ def shouldHashTagBeUsed(hashtagToCheck, nameArray):
 #getTweetCount('Cirque du Soleil')
 
 #print "Twitter Count Returned: " + str(getTweetCount('Drake'))
-
-print "Twitter Count Returned: " + str(getTweetCount('Imagine Music Festival'))
+#print "Twitter Count Returned: " + str(getTweetCount('Imagine Music Festival'))
+print "Twitter Count Returned: " + str(getTweetCount('Beyonce - The Formation World Tour')
 
 
 
