@@ -54,7 +54,7 @@ def getTweetCount(name):
 
 
         for hashtag in tweet['hashtags']:
-            print "\nOn hashtag: " + hashtagToCheck + "\n"
+            print "\nOn hashtag: " + hashtag + "\n"
             if (hashtag not in seenHashTags) and shouldHashTagBeUsed(hashtag, nameArray):
                 ###### Adds hashtags if not in seenHas Tags else continues
                 seenHashTags.add(hashtag)
