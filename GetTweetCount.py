@@ -135,7 +135,9 @@ def shouldHashTagBeUsed(hashtagToCheck, nameArray):
 
 #print "Twitter Count Returned: " + str(getTweetCount('Drake'))
 #print "Twitter Count Returned: " + str(getTweetCount('Imagine Music Festival'))
-print "Twitter Count Returned: " + str(getTweetCount('Beyonce - The Formation World Tour')
+print "Twitter Count Returned: " + str(getTweetCount('Beyonce - The Formation World Tour'))
+
+
 
 
 
