@@ -85,9 +85,9 @@ def getTweetCount(name):
             else:
                 continue #Next hashtag
 
-    #print len(seenTweetIds)
     print seenHashTags
     #print "Has Tags Seen: " + str(seenHashTags)
+    print "Twitter Count Returned: " + str(len(seenTweetIds))
     return len(seenTweetIds)
 
 
