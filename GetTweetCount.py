@@ -48,8 +48,7 @@ def getTweetCount(name):
             print "Tweet Checked with ID " + str(tweet['tweet_id'])
             seenTweetIds.add(tweet['tweet_id'])
         else:
-	    print "Tweet Continued with ID " + str(tweet['tweet_id']) + " is today = " + str(isToday(tweet['created_at']))
-            print "Continued"
+            print "Tweet Continued with ID " + str(tweet['tweet_id']) + " is today = " + str(isToday(tweet['created_at']))
             continue
         ######
 
@@ -127,7 +126,7 @@ def shouldHashTagBeUsed(hashtagToCheck, nameArray):
 # sys.settrace(trace)
 #getTweetCount('Imagine Music Festival')
 #getTweetCount('Growing your Reputation through Social Media')
-getTweetCount('JOB FAIR!! JOB FAIR!! JOB FAIR!!  ')
+getTweetCount('Atlanta Career Fair - April 15, 2016 On-The-Spot Hiring Job Fair')
 #getTweetCount('Beyonce Georgia Dome')
 #getTweetCount('Cirque du Soleil')
 
