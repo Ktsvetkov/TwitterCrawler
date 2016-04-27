@@ -112,7 +112,7 @@ def getNameArray(nameString, genericListOfWords):
 def shouldHashTagBeUsed(hashtagToCheck, nameArray):
     print "\nChecking hashtag: " + hashtagToCheck + "\n"
     for nameToCheck in nameArray:
-        if nameToCheck.lower() in hashtagToCheck.lower():
+        if nameToCheck in hashtagToCheck:
             return True
         else:
             print "hashtag " + hashtagToCheck + " not found"
