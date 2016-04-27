@@ -126,8 +126,7 @@ def shouldHashTagBeUsed(hashtagToCheck, nameArray):
 
 # sys.settrace(trace)
 #getTweetCount('Imagine Music Festival')
-#getTweetCount('Growing your Reputation through Social Media')
-getTweetCount('JOB FAIR!! JOB FAIR!! JOB FAIR!!  ')
+getTweetCount('Growing your Reputation through Social Media')
 #getTweetCount('Beyonce Georgia Dome')
 #getTweetCount('Cirque du Soleil')
 
