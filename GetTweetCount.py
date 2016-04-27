@@ -87,7 +87,6 @@ def getTweetCount(name):
 
     print seenHashTags
     #print "Has Tags Seen: " + str(seenHashTags)
-    print "Twitter Count Returned: " + str(len(seenTweetIds))
     return len(seenTweetIds)
 
 
@@ -127,7 +126,7 @@ def shouldHashTagBeUsed(hashtagToCheck, nameArray):
 #getTweetCount('Imagine Music Festival')
 #getTweetCount('Growing your Reputation through Social Media')
 #getTweetCount('Atlanta Career Fair - April 15, 2016 On-The-Spot Hiring Job Fair')
-getTweetCount('Delaware North Sportservice- Employee Processing')
+print "Twitter Count Returned: " + str(getTweetCount('Delaware North Sportservice- Employee Processing'))
 #getTweetCount('Beyonce Georgia Dome')
 #getTweetCount('Cirque du Soleil')
 
