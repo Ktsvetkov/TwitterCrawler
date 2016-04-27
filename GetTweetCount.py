@@ -130,8 +130,9 @@ def shouldHashTagBeUsed(hashtagToCheck, nameArray):
 #getTweetCount('Beyonce Georgia Dome')
 #getTweetCount('Cirque du Soleil')
 
-print "Twitter Count Returned: " + str(getTweetCount('Drake'))
+#print "Twitter Count Returned: " + str(getTweetCount('Drake'))
 
+print "Twitter Count Returned: " + str(getTweetCount('Imagine Music Festival'))
 
 
 
