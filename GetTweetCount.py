@@ -139,7 +139,7 @@ def findInitialTweets(nameArray):
 
     currentNameToQuery = nameArrayToString(nameArray)
     tweetsToAdd = getArrayOfTweets(currentNameToQuery)
-    tweetsToReturn.append(tweetsToAdd)
+    tweetsToReturn = {key: value for (key, value) in (tweetsToReturn.items() + tweetsToAdd.items())}
 
     if len(tweetsToReturn) < 20 and len(nameArray) > 3:
         indexOfWordsToSearch = 0
@@ -149,7 +149,7 @@ def findInitialTweets(nameArray):
             newNameArray.append(nameArray[indexOfWordsToSearch+1])
             currentNameToQuery = nameArrayToString(newNameArray)
             tweetsToAdd = getArrayOfTweets(currentNameToQuery)
-            tweetsToReturn.append(tweetsToAdd)
+            tweetsToReturn = {key: value for (key, value) in (tweetsToReturn.items() + tweetsToAdd.items())}
             indexOfWordsToSearch += 2
 
     return tweetsToReturn
