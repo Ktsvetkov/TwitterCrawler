@@ -1,6 +1,6 @@
 __author__ = 'Judah'
 
-import tweepy, sys
+import tweepy, sys, time
 from tweepy import OAuthHandler
 from TwitterScraper import TwitterSearchImpl
 
@@ -183,8 +183,12 @@ def appendNewArrayOfTweets(tweets, nameToQuery):
 
 #print "Twitter Count Returned: " + str(getTweetCount('Drake'))
 #print "Twitter Count Returned: " + str(getTweetCount('Imagine Music Festival'))
-print "Twitter Count Returned: " + str(getTweetCount('Beyonce - The Formation World Tour'))
 
+start = time.time()
+print "Twitter Count Returned: " + str(getTweetCount('Beyonce - The Formation World Tour'))
+end = time.time()
+
+print "Time taken for query: " + str(end - start)
 
 
 
