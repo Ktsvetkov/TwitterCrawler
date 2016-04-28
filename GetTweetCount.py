@@ -36,13 +36,12 @@ def getTweetCount(name):
     print nameArray
 
     ####### Gets 20 tweets from name
-    liveTwitterSearch = twit.search(name + ' near:Atlanta')
-    tweets = twit.getTweets()
+    tweets = findInitialTweets(nameArray)
     seenHashTags = set()
     seenTweetIds = set()
     #######
 
-    print "\n\n\nTweets: " + str(tweets) + "\n\n\n"
+    print "\n\n\nTweet Count: " + len(tweets) + "\n\n\n"
 
     for tweet in tweets:
 
@@ -120,6 +119,37 @@ def shouldHashTagBeUsed(hashtagToCheck, nameArray):
             print "hashtag " + hashtagToCheck + " not found"
     return False
 
+
+def findInitialTweets(nameArray):
+    currentNameToQuery = nameArrayToString(nameArray)
+    tweets = addTweetsToArray(tweets, currentNameToQuery)
+
+    if len(tweets) < 20 and len(nameArray) > 3:
+        indexOfWordsToSearch = 0
+        while len(tweets) < 20 and indexOfWordsToSearch < (len(nameArray) - 1):
+            newNameArray = []
+            newNameArray.append(nameArray[indexOfWordsToSearch])
+            newNameArray.append(nameArray[indexOfWordsToSearch+1])
+            currentNameToQuery = nameArrayToString(newNameArray)
+            tweets = addTweetsToArray(tweets, currentNameToQuery)
+            indexOfWordsToSearch += 2
+
+    return tweets
+
+
+def nameArrayToString(nameArray):
+    toReturn = ""
+    for nameToAppend in nameArray:
+        toReturn = toReturn + nameToAppend + " "
+    toReturn = toReturn[:-1]
+    return toReturn
+
+
+def addTweetsToArray(tweets, nameToQuery):
+    liveTwitterSearch = twit.search(currentNameToQuery + ' near:Atlanta')
+    tweetsToAdd = twit.getTweets()
+    tweets.append(tweetsToAdd)
+    return tweets
 
 # def trace(frame, event, arg):
 #     print "%s, %s:%d" % (event, frame.f_code.co_filename, frame.f_lineno)
