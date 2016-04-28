@@ -132,8 +132,8 @@ def shouldHashTagBeUsed(hashtagToCheck, nameArray):
 
 def findInitialTweets(nameArray):
     currentNameToQuery = ""
-    tweetsToAdd = []
-    tweetsToReturn = []
+    tweetsToAdd = set()
+    tweetsToReturn = set()
 
     currentNameToQuery = nameArrayToString(nameArray)
     tweetsToAdd = getArrayOfTweets(currentNameToQuery)
@@ -142,7 +142,7 @@ def findInitialTweets(nameArray):
     if len(tweetsToReturn) < 20 and len(nameArray) > 3:
         indexOfWordsToSearch = 0
         while len(tweetsToReturn) < 20 and indexOfWordsToSearch < (len(nameArray) - 1):
-            newNameArray = []
+            newNameArray = set()
             newNameArray.append(nameArray[indexOfWordsToSearch])
             newNameArray.append(nameArray[indexOfWordsToSearch+1])
             currentNameToQuery = nameArrayToString(newNameArray)
