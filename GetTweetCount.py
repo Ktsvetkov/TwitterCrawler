@@ -7,7 +7,6 @@ from TwitterScraper import TwitterSearchImpl
 returnsOnlyCurrentTweets = True;
 
 def isToday(inString):
-    return True
     if not returnsOnlyCurrentTweets:
         return True
     timePeriodString = filter(lambda x: x.isalpha(), inString)
@@ -46,15 +45,10 @@ def getTweetCount(name):
 
     print "\n\n\nTweets: " + str(tweets) + "\n\n\n"
 
-    # print "\n\n\nTweets: "
-    # for tweet in tweets:
-    #     print str(tweet['text'])
-    # print "\n\n\n"
-
     for tweet in tweets:
 
         ###### Adds tweet id if not already seen else continues to next tweet
-        if (tweet['tweet_id'] not in seenTweetIds) and isToday(tweet['created_at']):
+        if (tweet['tweet_id'] not in seenTweetIds) and isToday(tweet['created_at']) and shouldTweetBeUsed(tweet, nameArray, "ORIGINAL"):
             print "Checking Tweet layer 1 with ID " + str(tweet['tweet_id'])
             seenTweetIds.add(tweet['tweet_id'])
         else:
@@ -73,7 +67,7 @@ def getTweetCount(name):
                 tweets2 = twit.getTweets()
                 ######
                 for tweet2 in tweets2:
-                    if (tweet2['tweet_id'] not in seenTweetIds) and isToday(tweet2['created_at']):
+                    if (tweet2['tweet_id'] not in seenTweetIds) and isToday(tweet2['created_at']) and shouldTweetBeUsed(tweet2, nameArray, hashtag):
                         ##### Adds tweet if not added
                         print "Checking Tweet layer 2 with ID " + str(tweet2['tweet_id'])
                         seenTweetIds.add(tweet2['tweet_id'])
@@ -87,7 +81,7 @@ def getTweetCount(name):
                                 tweets3 = twit.getTweets()
                                 ######
                                 for tweet3 in tweets3:
-                                    if (tweet3['tweet_id'] not in seenTweetIds) and isToday(tweet3['created_at']):
+                                    if (tweet3['tweet_id'] not in seenTweetIds) and isToday(tweet3['created_at']) and shouldTweetBeUsed(tweet3, nameArray, hashtag2):
                                         seenTweetIds.add(tweet3['tweet_id'])
                                         print "Added Tweet layer 3 with ID " + str(tweet3['tweet_id'])
                                     else:
@@ -101,6 +95,10 @@ def getTweetCount(name):
 
     print seenHashTags
     #print "Has Tags Seen: " + str(seenHashTags)
+    # print "\n\n\nTweets: "
+    # for tweet in tweets:
+    #     print str(tweet['text'])
+    # print "\n\n\n"
     return len(seenTweetIds)
 
 
@@ -129,13 +127,29 @@ def getNameArray(nameString, genericListOfWords):
 def shouldHashTagBeUsed(hashtagToCheck, nameArray, hashtagFrom):
     print "\nChecking hashtag: " + hashtagToCheck
     for nameToCheck in nameArray:
-        if True:#nameToCheck.lower() in hashtagToCheck.lower():
+        if nameToCheck.lower() in hashtagToCheck.lower():
             print "Hashtag: " + hashtagToCheck + " does contain event word " + nameToCheck + " - Retrieved using hashtag: " + hashtagFrom
             return True
         else:
             print "Hashtag: " + hashtagToCheck + " does not contain event word " + nameToCheck + " - Retrieved using hashtag: " + hashtagFrom
     print "\n"
     return False
+
+
+def shouldTweetBeUsed(tweet, nameArray, hashtagFrom):
+    print "\nChecking tweet: " + tweet['tweet_id']
+    tweetCheckerStatus = 0
+    for nameToCheck in nameArray:
+        if nameToCheck.lower() in tweet[text].lower():
+            print "Tweet: " + tweet[text] + " does contain event word " + nameToCheck + " - Retrieved using hashtag: " + hashtagFrom
+            tweetCheckerStatus += 1
+        else:
+            print "Tweet: " + tweet[text] + " does not contain event word " + nameToCheck + " - Retrieved using hashtag: " + hashtagFrom
+    print "\n"
+    if tweetCheckerStatus > 1:
+        return True
+    else:
+        return False
 
 
 
