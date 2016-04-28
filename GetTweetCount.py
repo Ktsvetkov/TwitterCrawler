@@ -131,7 +131,7 @@ def findInitialTweets(nameArray):
 
     if len(tweetsToReturn) < 20 and len(nameArray) > 3:
         indexOfWordsToSearch = 0
-        while len(tweets) < 20 and indexOfWordsToSearch < (len(nameArray) - 1):
+        while len(tweetsToReturn) < 20 and indexOfWordsToSearch < (len(nameArray) - 1):
             newNameArray = []
             newNameArray.append(nameArray[indexOfWordsToSearch])
             newNameArray.append(nameArray[indexOfWordsToSearch+1])
