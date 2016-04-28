@@ -137,17 +137,17 @@ def findInitialTweets(nameArray):
 
     currentNameToQuery = nameArrayToString(nameArray)
     tweetsToAdd = getArrayOfTweets(currentNameToQuery)
-    tweetsToReturn.append(tweetsToAdd)
+    tweetsToReturn.add(tweetsToAdd)
 
     if len(tweetsToReturn) < 20 and len(nameArray) > 3:
         indexOfWordsToSearch = 0
         while len(tweetsToReturn) < 20 and indexOfWordsToSearch < (len(nameArray) - 1):
-            newNameArray = set()
+            newNameArray = []
             newNameArray.append(nameArray[indexOfWordsToSearch])
             newNameArray.append(nameArray[indexOfWordsToSearch+1])
             currentNameToQuery = nameArrayToString(newNameArray)
-            tweetsToAdd = getArrayOfTweets(currentNameToQuery)
-            tweetsToReturn.append(tweetsToAdd)
+            tweetsToAdd = getSetOfTweets(currentNameToQuery)
+            tweetsToReturn.add(tweetsToAdd)
             indexOfWordsToSearch += 2
 
     return tweetsToReturn
@@ -161,7 +161,7 @@ def nameArrayToString(nameArray):
     return toReturn
 
 
-def getArrayOfTweets(nameToQuery):
+def getSetOfTweets(nameToQuery):
     liveTwitterSearch = twit.search(nameToQuery + ' near:Atlanta')
     tweetsToReturn = twit.getTweets()
     return tweetsToReturn
