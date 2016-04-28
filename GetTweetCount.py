@@ -26,7 +26,7 @@ twitterAPI = tweepy.API(auth)
 
 twit = TwitterSearchImpl(0, 5, 20)
 
-shouldMakeTweetsRelevant = False
+shouldMakeTweetsRelevant = True
 shouldMakeHashTagsRelevant = True
 wordsInTweetsToMakeRelevant = 2
 wordsInHashtagsToMakeRelevant = 1
