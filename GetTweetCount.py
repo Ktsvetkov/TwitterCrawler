@@ -121,8 +121,10 @@ def shouldHashTagBeUsed(hashtagToCheck, nameArray):
 
 
 def findInitialTweets(nameArray):
-    tweetsToReturn = []
+    currentNameToQuery = ""
     tweetsToAdd = []
+    tweetsToReturn = []
+
     currentNameToQuery = nameArrayToString(nameArray)
     tweetsToAdd = getArrayOfTweets(currentNameToQuery)
     tweetsToReturn.append(tweetsToAdd)
