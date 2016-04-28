@@ -42,7 +42,11 @@ def getTweetCount(name):
     #######
 
     print "\n\n\nTweet Count: " + str(len(tweets)) + "\n\n\n"
-    print "\n\n\nTweets: " + str(tweets) + "\n\n\n"
+
+    print "\n\n\nTweets: "
+    for tweet in tweets:
+        print str(tweet['text'])
+    print "\n\n\n"
 
     for tweet in tweets:
 
