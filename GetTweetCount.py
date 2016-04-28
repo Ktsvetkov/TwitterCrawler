@@ -7,6 +7,7 @@ from TwitterScraper import TwitterSearchImpl
 returnsOnlyCurrentTweets = True;
 
 def isToday(inString):
+    return True
     if not returnsOnlyCurrentTweets:
         return True
     timePeriodString = filter(lambda x: x.isalpha(), inString)
@@ -128,7 +129,7 @@ def getNameArray(nameString, genericListOfWords):
 def shouldHashTagBeUsed(hashtagToCheck, nameArray, hashtagFrom):
     print "\nChecking hashtag: " + hashtagToCheck
     for nameToCheck in nameArray:
-        if nameToCheck.lower() in hashtagToCheck.lower():
+        if True:#nameToCheck.lower() in hashtagToCheck.lower():
             print "Hashtag: " + hashtagToCheck + " does contain event word " + nameToCheck + " - Retrieved using hashtag: " + hashtagFrom
             return True
         else:
