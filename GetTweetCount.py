@@ -54,10 +54,10 @@ def getTweetCount(name):
 
         ###### Adds tweet id if not already seen else continues to next tweet
         if (tweet['tweet_id'] not in seenTweetIds) and isToday(tweet['created_at']):
-            print "Checking Tweet with ID " + str(tweet['tweet_id'])
+            print "Checking Tweet layer 1 with ID " + str(tweet['tweet_id'])
             seenTweetIds.add(tweet['tweet_id'])
         else:
-            print "Skipped Tweet with ID " + str(tweet['tweet_id']) + " is today = " + str(isToday(tweet['created_at']))
+            print "Skipped Tweet layer 1 with ID " + str(tweet['tweet_id']) + " is today = " + str(isToday(tweet['created_at']))
             continue
         ######
 
@@ -74,6 +74,7 @@ def getTweetCount(name):
                 for tweet2 in tweets2:
                     if (tweet2['tweet_id'] not in seenTweetIds) and isToday(tweet2['created_at']):
                         ##### Adds tweet if not added
+                        print "Checking Tweet layer 2 with ID " + str(tweet2['tweet_id'])
                         seenTweetIds.add(tweet2['tweet_id'])
                         #####
                         ##### Traverse hashtags in tweets from hashtags
@@ -87,8 +88,12 @@ def getTweetCount(name):
                                 for tweet3 in tweets3:
                                     if (tweet3['tweet_id'] not in seenTweetIds) and isToday(tweet3['created_at']):
                                         seenTweetIds.add(tweet3['tweet_id'])
+                                        print "Added Tweet layer 3 with ID " + str(tweet3['tweet_id'])
+                                    else:
+                                        print "Skipped Tweet layer 3 with ID " + str(tweet3['tweet_id']) + " is today = " + str(isToday(tweet3['created_at']))
                         #####
                     else:
+                        print "Skipped Tweet layer 2 with ID " + str(tweet2['tweet_id']) + " is today = " + str(isToday(tweet2['created_at']))
                         continue
             else:
                 continue #Next hashtag
@@ -124,6 +129,7 @@ def shouldHashTagBeUsed(hashtagToCheck, nameArray):
     print "\nChecking hashtag: " + hashtagToCheck
     for nameToCheck in nameArray:
         if nameToCheck.lower() in hashtagToCheck.lower():
+            print "hashtag " + hashtagToCheck + " does contain event word " + nameToCheck
             return True
         else:
             print "hashtag " + hashtagToCheck + " does not contain event word " + nameToCheck
