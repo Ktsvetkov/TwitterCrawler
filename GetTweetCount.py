@@ -26,6 +26,10 @@ twitterAPI = tweepy.API(auth)
 
 twit = TwitterSearchImpl(0, 5, 20)
 
+shouldMakeTweetsRelevant = True
+shouldMakeHashTagsRelevant = True
+wordsInTweetsToMakeRelevant = 2
+wordsInHashtagsToMakeRelevant = 1
 
 def getTweetCount(name):
 
@@ -125,18 +129,25 @@ def getNameArray(nameString, genericListOfWords):
 
 
 def shouldHashTagBeUsed(hashtagToCheck, nameArray, hashtagFrom):
+    if not shouldMakeHashTagsRelevant:
+        return True
     print "\nChecking hashtag: " + hashtagToCheck
+    hashtagCheckerStatus = 0
     for nameToCheck in nameArray:
         if nameToCheck.lower() in hashtagToCheck.lower():
             print "Hashtag: " + hashtagToCheck + " does contain event word " + nameToCheck + " - Retrieved using hashtag: " + hashtagFrom
-            return True
+            hashtagCheckerStatus += 1
         else:
             print "Hashtag: " + hashtagToCheck + " does not contain event word " + nameToCheck + " - Retrieved using hashtag: " + hashtagFrom
     print "\n"
-    return False
-
+    if hashtagCheckerStatus >= wordsInHashtagsToMakeRelevant:
+        return True
+    else:
+        return False
 
 def shouldTweetBeUsed(tweet, nameArray, hashtagFrom):
+    if not shouldMakeTweetsRelevant:
+        return True
     print "\nChecking tweet: " + tweet['tweet_id']
     tweetCheckerStatus = 0
     for nameToCheck in nameArray:
@@ -146,7 +157,7 @@ def shouldTweetBeUsed(tweet, nameArray, hashtagFrom):
         else:
             print "Tweet: " + tweet[text] + " does not contain event word " + nameToCheck + " - Retrieved using hashtag: " + hashtagFrom
     print "\n"
-    if tweetCheckerStatus > 1:
+    if tweetCheckerStatus >= wordsInTweetsToMakeRelevant:
         return True
     else:
         return False
@@ -195,7 +206,6 @@ def appendNewArrayOfTweets(tweets, nameToQuery):
 #print "Twitter Count Returned: " + str(getTweetCount('Delaware North Sportservice- Employee Processing'))
 #getTweetCount('Beyonce Georgia Dome')
 #getTweetCount('Cirque du Soleil')
-
 #print "Twitter Count Returned: " + str(getTweetCount('Drake'))
 #print "Twitter Count Returned: " + str(getTweetCount('Imagine Music Festival'))
 
