@@ -171,13 +171,13 @@ def appendNewArrayOfTweets(tweets, nameToQuery):
 #getTweetCount('Imagine Music Festival')
 #getTweetCount('Growing your Reputation through Social Media')
 #getTweetCount('Atlanta Career Fair - April 15, 2016 On-The-Spot Hiring Job Fair')
-print "Twitter Count Returned: " + str(getTweetCount('Delaware North Sportservice- Employee Processing'))
+#print "Twitter Count Returned: " + str(getTweetCount('Delaware North Sportservice- Employee Processing'))
 #getTweetCount('Beyonce Georgia Dome')
 #getTweetCount('Cirque du Soleil')
 
 #print "Twitter Count Returned: " + str(getTweetCount('Drake'))
 #print "Twitter Count Returned: " + str(getTweetCount('Imagine Music Festival'))
-#print "Twitter Count Returned: " + str(getTweetCount('Beyonce - The Formation World Tour'))
+print "Twitter Count Returned: " + str(getTweetCount('Beyonce - The Formation World Tour'))
 
 
 
