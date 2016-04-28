@@ -151,11 +151,11 @@ def shouldTweetBeUsed(tweet, nameArray, hashtagFrom):
     print "\nChecking tweet: " + tweet['tweet_id']
     tweetCheckerStatus = 0
     for nameToCheck in nameArray:
-        if nameToCheck.lower() in tweet[text].lower():
-            print "Tweet: " + tweet[text] + " does contain event word " + nameToCheck + " - Retrieved using hashtag: " + hashtagFrom
+        if nameToCheck.lower() in tweet['text'].lower():
+            print "Tweet: " + tweet['text'] + " does contain event word " + nameToCheck + " - Retrieved using hashtag: " + hashtagFrom
             tweetCheckerStatus += 1
         else:
-            print "Tweet: " + tweet[text] + " does not contain event word " + nameToCheck + " - Retrieved using hashtag: " + hashtagFrom
+            print "Tweet: " + tweet['text'] + " does not contain event word " + nameToCheck + " - Retrieved using hashtag: " + hashtagFrom
     print "\n"
     if tweetCheckerStatus >= wordsInTweetsToMakeRelevant:
         return True
