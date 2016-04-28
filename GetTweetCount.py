@@ -136,7 +136,7 @@ def findInitialTweets(nameArray):
     tweetsToReturn = set()
 
     currentNameToQuery = nameArrayToString(nameArray)
-    tweetsToAdd = getArrayOfTweets(currentNameToQuery)
+    tweetsToAdd = getSetOfTweets(currentNameToQuery)
     tweetsToReturn.add(tweetsToAdd)
 
     if len(tweetsToReturn) < 20 and len(nameArray) > 3:
