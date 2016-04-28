@@ -152,7 +152,7 @@ def nameArrayToString(nameArray):
 
 
 def getArrayOfTweets(nameToQuery):
-    liveTwitterSearch = twit.search(currentNameToQuery + ' near:Atlanta')
+    liveTwitterSearch = twit.search(nameToQuery + ' near:Atlanta')
     tweetsToReturn = twit.getTweets()
     return tweetsToReturn
 
