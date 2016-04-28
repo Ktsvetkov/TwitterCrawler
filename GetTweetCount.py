@@ -63,7 +63,7 @@ def getTweetCount(name):
 
 
         for hashtag in tweet['hashtags']:
-            if (hashtag not in seenHashTags) and shouldHashTagBeUsed(hashtag, nameArray):
+            if (hashtag not in seenHashTags) and shouldHashTagBeUsed(hashtag, nameArray, "ORIGINAL"):
                 ###### Adds hashtags if not in seenHas Tags else continues
                 seenHashTags.add(hashtag)
                 ######
@@ -79,7 +79,7 @@ def getTweetCount(name):
                         #####
                         ##### Traverse hashtags in tweets from hashtags
                         for hashtag2 in tweet2['hashtags']:
-                            if (hashtag2 not in seenHashTags) and shouldHashTagBeUsed(hashtag2, nameArray):
+                            if (hashtag2 not in seenHashTags) and shouldHashTagBeUsed(hashtag2, nameArray, hashtag):
                                 ###### Get 2nd round of tweets from hash tags
                                 seenHashTags.add(hashtag2)
                                 liveTwitterSearch = twit.search('#'+ hashtag2.encode('utf-8') + ' near:Atlanta')
@@ -125,14 +125,14 @@ def getNameArray(nameString, genericListOfWords):
 
 
 
-def shouldHashTagBeUsed(hashtagToCheck, nameArray):
+def shouldHashTagBeUsed(hashtagToCheck, nameArray, hashtagFrom):
     print "\nChecking hashtag: " + hashtagToCheck
     for nameToCheck in nameArray:
         if nameToCheck.lower() in hashtagToCheck.lower():
-            print "hashtag " + hashtagToCheck + " does contain event word " + nameToCheck
+            print "Hashtag: " + hashtagToCheck + " does contain event word " + nameToCheck + " - Retrieved using hashtag: " + hashtagFrom
             return True
         else:
-            print "hashtag " + hashtagToCheck + " does not contain event word " + nameToCheck
+            print "Hashtag: " + hashtagToCheck + " does not contain event word " + nameToCheck + " - Retrieved using hashtag: " + hashtagFrom
     print "\n"
     return False
 
