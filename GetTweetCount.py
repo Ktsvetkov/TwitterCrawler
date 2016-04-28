@@ -134,12 +134,11 @@ def shouldHashTagBeUsed(hashtagToCheck, nameArray):
 
 def findInitialTweets(nameArray):
     currentNameToQuery = ""
-    tweetsToAdd = []
     tweetsToReturn = []
 
     currentNameToQuery = nameArrayToString(nameArray)
-    tweetsToAdd = getArrayOfTweets(currentNameToQuery)
-    tweetsToReturn = {key: value for (key, value) in (tweetsToReturn.items() + tweetsToAdd.items())}
+    appendNewArrayOfTweets(tweetsToReturn, currentNameToQuery)
+
 
     if len(tweetsToReturn) < 20 and len(nameArray) > 3:
         indexOfWordsToSearch = 0
@@ -148,8 +147,7 @@ def findInitialTweets(nameArray):
             newNameArray.append(nameArray[indexOfWordsToSearch])
             newNameArray.append(nameArray[indexOfWordsToSearch+1])
             currentNameToQuery = nameArrayToString(newNameArray)
-            tweetsToAdd = getArrayOfTweets(currentNameToQuery)
-            tweetsToReturn = {key: value for (key, value) in (tweetsToReturn.items() + tweetsToAdd.items())}
+            appendNewArrayOfTweets(tweetsToReturn, currentNameToQuery)
             indexOfWordsToSearch += 2
 
     return tweetsToReturn
@@ -163,11 +161,11 @@ def nameArrayToString(nameArray):
     return toReturn
 
 
-def getArrayOfTweets(nameToQuery):
+def appendNewArrayOfTweets(tweets, nameToQuery):
     liveTwitterSearch = twit.search(nameToQuery + ' near:Atlanta')
-    tweetsToReturn = twit.getTweets()
-    return tweetsToReturn
-
+    tweetsToAdd = twit.getTweets()
+    for tweet in tweetsToAdd:
+        tweets.append(tweet)
 
 
 #getTweetCount('Imagine Music Festival')
