@@ -43,10 +43,12 @@ def getTweetCount(name):
 
     print "\n\n\nTweet Count: " + str(len(tweets)) + "\n\n\n"
 
-    print "\n\n\nTweets: "
-    for tweet in tweets:
-        print str(tweet['text'])
-    print "\n\n\n"
+    print "\n\n\nTweets: " + str(tweets) + "\n\n\n"
+
+    # print "\n\n\nTweets: "
+    # for tweet in tweets:
+    #     print str(tweet['text'])
+    # print "\n\n\n"
 
     for tweet in tweets:
 
@@ -132,12 +134,12 @@ def shouldHashTagBeUsed(hashtagToCheck, nameArray):
 
 def findInitialTweets(nameArray):
     currentNameToQuery = ""
-    tweetsToAdd = set()
-    tweetsToReturn = set()
+    tweetsToAdd = []
+    tweetsToReturn = []
 
     currentNameToQuery = nameArrayToString(nameArray)
-    tweetsToAdd = getSetOfTweets(currentNameToQuery)
-    tweetsToReturn.add(tweetsToAdd)
+    tweetsToAdd = getArrayOfTweets(currentNameToQuery)
+    tweetsToReturn.append(tweetsToAdd)
 
     if len(tweetsToReturn) < 20 and len(nameArray) > 3:
         indexOfWordsToSearch = 0
@@ -146,8 +148,8 @@ def findInitialTweets(nameArray):
             newNameArray.append(nameArray[indexOfWordsToSearch])
             newNameArray.append(nameArray[indexOfWordsToSearch+1])
             currentNameToQuery = nameArrayToString(newNameArray)
-            tweetsToAdd = getSetOfTweets(currentNameToQuery)
-            tweetsToReturn.add(tweetsToAdd)
+            tweetsToAdd = getArrayOfTweets(currentNameToQuery)
+            tweetsToReturn.append(tweetsToAdd)
             indexOfWordsToSearch += 2
 
     return tweetsToReturn
@@ -161,7 +163,7 @@ def nameArrayToString(nameArray):
     return toReturn
 
 
-def getSetOfTweets(nameToQuery):
+def getArrayOfTweets(nameToQuery):
     liveTwitterSearch = twit.search(nameToQuery + ' near:Atlanta')
     tweetsToReturn = twit.getTweets()
     return tweetsToReturn
