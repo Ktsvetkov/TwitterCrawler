@@ -54,16 +54,15 @@ def getTweetCount(name):
 
         ###### Adds tweet id if not already seen else continues to next tweet
         if (tweet['tweet_id'] not in seenTweetIds) and isToday(tweet['created_at']):
-            print "Tweet Checked with ID " + str(tweet['tweet_id'])
+            print "Checking Tweet with ID " + str(tweet['tweet_id'])
             seenTweetIds.add(tweet['tweet_id'])
         else:
-            print "Tweet Continued with ID " + str(tweet['tweet_id']) + " is today = " + str(isToday(tweet['created_at']))
+            print "Skipped Tweet with ID " + str(tweet['tweet_id']) + " is today = " + str(isToday(tweet['created_at']))
             continue
         ######
 
 
         for hashtag in tweet['hashtags']:
-            print "\nOn hashtag: " + hashtag + "\n"
             if (hashtag not in seenHashTags) and shouldHashTagBeUsed(hashtag, nameArray):
                 ###### Adds hashtags if not in seenHas Tags else continues
                 seenHashTags.add(hashtag)
