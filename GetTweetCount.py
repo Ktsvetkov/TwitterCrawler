@@ -42,6 +42,7 @@ def getTweetCount(name):
     #######
 
     print "\n\n\nTweet Count: " + str(len(tweets)) + "\n\n\n"
+    print "\n\n\nTweets: " + str(tweets) + "\n\n\n"
 
     for tweet in tweets:
 
@@ -92,6 +93,7 @@ def getTweetCount(name):
     return len(seenTweetIds)
 
 
+
 def getListOfGenericWords():
     genericListToReturn = []
     with open('words10k.txt', 'r') as f:
@@ -103,12 +105,15 @@ def getListOfGenericWords():
                 genericListToReturn.append(line.split("\n")[0])
     return genericListToReturn
 
+
 def getNameArray(nameString, genericListOfWords):
     nameArrayToReturn = nameString.split(" ")
     for wordOfName in nameArrayToReturn:
         if wordOfName in genericListOfWords:
             nameArrayToReturn.remove(wordOfName)
     return nameArrayToReturn
+
+
 
 def shouldHashTagBeUsed(hashtagToCheck, nameArray):
     print "\nChecking hashtag: " + hashtagToCheck + "\n"
@@ -118,6 +123,7 @@ def shouldHashTagBeUsed(hashtagToCheck, nameArray):
         else:
             print "hashtag " + hashtagToCheck + " not found"
     return False
+
 
 
 def findInitialTweets(nameArray):
@@ -156,11 +162,8 @@ def getArrayOfTweets(nameToQuery):
     tweetsToReturn = twit.getTweets()
     return tweetsToReturn
 
-# def trace(frame, event, arg):
-#     print "%s, %s:%d" % (event, frame.f_code.co_filename, frame.f_lineno)
-#     return trace
 
-# sys.settrace(trace)
+
 #getTweetCount('Imagine Music Festival')
 #getTweetCount('Growing your Reputation through Social Media')
 #getTweetCount('Atlanta Career Fair - April 15, 2016 On-The-Spot Hiring Job Fair')
